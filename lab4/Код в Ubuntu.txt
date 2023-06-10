@@ -1,0 +1,507 @@
+nadia@nadia-VirtualBox:~/git/project$ cd
+nadia@nadia-VirtualBox:~$ mkdir laba4
+nadia@nadia-VirtualBox:~$ cd /laba4/
+bash: cd: /laba4/: No such file or directory
+nadia@nadia-VirtualBox:~$ cd /laba4
+bash: cd: /laba4: No such file or directory
+nadia@nadia-VirtualBox:~$ mkdir laba4/pro
+nadia@nadia-VirtualBox:~$ cd /laba4/pro
+bash: cd: /laba4/pro: No such file or directory
+nadia@nadia-VirtualBox:~$ cd laba4/pro/
+nadia@nadia-VirtualBox:~/laba4/pro$ touch script.py
+nadia@nadia-VirtualBox:~/laba4/pro$ nano script.py
+nadia@nadia-VirtualBox:~/laba4/pro$ sudo chmod a+x script.py
+[sudo] password for nadia: 
+nadia@nadia-VirtualBox:~/laba4/pro$ git init
+hint: Using 'master' as the name for the initial branch. This default branch name
+hint: is subject to change. To configure the initial branch name to use in all
+hint: of your new repositories, which will suppress this warning, call:
+hint: 
+hint: 	git config --global init.defaultBranch <name>
+hint: 
+hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+hint: 'development'. The just-created branch can be renamed via this command:
+hint: 
+hint: 	git branch -m <name>
+Initialized empty Git repository in /home/nadia/laba4/pro/.git/
+nadia@nadia-VirtualBox:~/laba4/pro$ dvc init
+Initialized DVC repository.
+
+You can now commit the changes to git.
+
++---------------------------------------------------------------------+
+|                                                                     |
+|        DVC has enabled anonymous aggregate usage analytics.         |
+|     Read the analytics documentation (and how to opt-out) here:     |
+|             <https://dvc.org/doc/user-guide/analytics>              |
+|                                                                     |
++---------------------------------------------------------------------+
+
+What's next?
+------------
+- Check out the documentation: <https://dvc.org/doc>
+- Get help and share ideas: <https://dvc.org/chat>
+- Star us on GitHub: <https://github.com/iterative/dvc>
+nadia@nadia-VirtualBox:~/laba4/pro$ git status
+On branch master
+
+No commits yet
+
+Changes to be committed:
+  (use "git rm --cached <file>..." to unstage)
+	new file:   .dvc/.gitignore
+	new file:   .dvc/config
+	new file:   .dvcignore
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	script.py
+
+nadia@nadia-VirtualBox:~/laba4/pro$ git commit -m "df"
+[master (root-commit) 8e6db68] df
+ 3 files changed, 6 insertions(+)
+ create mode 100644 .dvc/.gitignore
+ create mode 100644 .dvc/config
+ create mode 100644 .dvcignore
+nadia@nadia-VirtualBox:~/laba4/pro$ dvc add pro
+Adding...                                                                                                                               
+ERROR: output 'pro' does not exist
+nadia@nadia-VirtualBox:~/laba4/pro$ dvc remote add "mydf" gdrive://1x22JlxSStHMfBRNzpYlzQgLPOff0LoFK
+nadia@nadia-VirtualBox:~/laba4/pro$ dvc remote list
+mydf	gdrive://1x22JlxSStHMfBRNzpYlzQgLPOff0LoFK
+nadia@nadia-VirtualBox:~/laba4/pro$ git status
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   .dvc/config
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	script.py
+
+no changes added to commit (use "git add" and/or "git commit -a")
+nadia@nadia-VirtualBox:~/laba4/pro$ git add .dvc/config
+nadia@nadia-VirtualBox:~/laba4/pro$ git comit -m "df"
+git: 'comit' is not a git command. See 'git --help'.
+
+The most similar command is
+	commit
+nadia@nadia-VirtualBox:~/laba4/pro$ git commit -m "df"
+[master 56748d4] df
+ 1 file changed, 2 insertions(+)
+nadia@nadia-VirtualBox:~/laba4/pro$ dvc push -r mydf
+Everything is up to date.                                             
+nadia@nadia-VirtualBox:~/laba4/pro$ nano script.py
+nadia@nadia-VirtualBox:~/laba4/pro$ ./script.py
+./script.py: line 1: import: command not found
+./script.py: line 2: from: command not found
+./script.py: line 4: syntax error near unexpected token `('
+./script.py: line 4: `train_df, _ = titanic()'
+nadia@nadia-VirtualBox:~/laba4/pro$ nano script.py
+nadia@nadia-VirtualBox:~/laba4/pro$ pip install catboost
+Defaulting to user installation because normal site-packages is not writeable
+Collecting catboost
+  Downloading catboost-1.2-cp310-cp310-manylinux2014_x86_64.whl (98.6 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 98.6/98.6 MB 2.9 MB/s eta 0:00:00
+Collecting numpy>=1.16.0
+  Downloading numpy-1.24.3-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (17.3 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 17.3/17.3 MB 2.6 MB/s eta 0:00:00
+Collecting pandas>=0.24
+  Downloading pandas-2.0.2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (12.3 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 12.3/12.3 MB 2.5 MB/s eta 0:00:00
+Requirement already satisfied: six in /usr/lib/python3/dist-packages (from catboost) (1.16.0)
+Collecting scipy
+  Downloading scipy-1.10.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (34.4 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 34.4/34.4 MB 3.0 MB/s eta 0:00:00
+Collecting graphviz
+  Downloading graphviz-0.20.1-py3-none-any.whl (47 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 47.0/47.0 KB 8.5 MB/s eta 0:00:00
+Collecting matplotlib
+  Downloading matplotlib-3.7.1-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (11.6 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 11.6/11.6 MB 4.0 MB/s eta 0:00:00
+Collecting plotly
+  Downloading plotly-5.15.0-py2.py3-none-any.whl (15.5 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 15.5/15.5 MB 4.7 MB/s eta 0:00:00
+Requirement already satisfied: tzdata>=2022.1 in /home/nadia/.local/lib/python3.10/site-packages (from pandas>=0.24->catboost) (2023.3)
+Requirement already satisfied: pytz>=2020.1 in /usr/lib/python3/dist-packages (from pandas>=0.24->catboost) (2022.1)
+Requirement already satisfied: python-dateutil>=2.8.2 in /home/nadia/.local/lib/python3.10/site-packages (from pandas>=0.24->catboost) (2.8.2)
+Requirement already satisfied: pyparsing>=2.3.1 in /usr/lib/python3/dist-packages (from matplotlib->catboost) (2.4.7)
+Requirement already satisfied: packaging>=20.0 in /home/nadia/.local/lib/python3.10/site-packages (from matplotlib->catboost) (23.1)
+Requirement already satisfied: pillow>=6.2.0 in /usr/lib/python3/dist-packages (from matplotlib->catboost) (9.0.1)
+Collecting contourpy>=1.0.1
+  Downloading contourpy-1.0.7-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (300 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 300.3/300.3 KB 2.6 MB/s eta 0:00:00
+Collecting kiwisolver>=1.0.1
+  Downloading kiwisolver-1.4.4-cp310-cp310-manylinux_2_12_x86_64.manylinux2010_x86_64.whl (1.6 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.6/1.6 MB 3.3 MB/s eta 0:00:00
+Collecting fonttools>=4.22.0
+  Downloading fonttools-4.39.4-py3-none-any.whl (1.0 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.0/1.0 MB 2.1 MB/s eta 0:00:00
+Collecting cycler>=0.10
+  Downloading cycler-0.11.0-py3-none-any.whl (6.4 kB)
+Collecting tenacity>=6.2.0
+  Downloading tenacity-8.2.2-py3-none-any.whl (24 kB)
+Installing collected packages: tenacity, numpy, kiwisolver, graphviz, fonttools, cycler, scipy, plotly, pandas, contourpy, matplotlib, catboost
+  WARNING: The scripts f2py, f2py3 and f2py3.10 are installed in '/home/nadia/.local/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+  WARNING: The scripts fonttools, pyftmerge, pyftsubset and ttx are installed in '/home/nadia/.local/bin' which is not on PATH.
+  Consider adding this directory to PATH or, if you prefer to suppress this warning, use --no-warn-script-location.
+Successfully installed catboost-1.2 contourpy-1.0.7 cycler-0.11.0 fonttools-4.39.4 graphviz-0.20.1 kiwisolver-1.4.4 matplotlib-3.7.1 numpy-1.24.3 pandas-2.0.2 plotly-5.15.0 scipy-1.10.1 tenacity-8.2.2
+nadia@nadia-VirtualBox:~/laba4/pro$ ./script.py
+./script.py: line 1: import: command not found
+./script.py: line 2: from: command not found
+./script.py: line 4: syntax error near unexpected token `('
+./script.py: line 4: `train_df, _ = titanic()'
+nadia@nadia-VirtualBox:~/laba4/pro$ nano script.py
+nadia@nadia-VirtualBox:~/laba4/pro$ python --version
+Command 'python' not found, did you mean:
+  command 'python3' from deb python3
+  command 'python' from deb python-is-python3
+nadia@nadia-VirtualBox:~/laba4/pro$ python3 --version
+Python 3.10.6
+nadia@nadia-VirtualBox:~/laba4/pro$ python3
+Python 3.10.6 (main, May 29 2023, 11:10:38) [GCC 11.3.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> 
+[1]+  Stopped                 python3
+nadia@nadia-VirtualBox:~/laba4/pro$ nano script.py
+nadia@nadia-VirtualBox:~/laba4/pro$ python3 .script.py
+python3: can't open file '/home/nadia/laba4/pro/.script.py': [Errno 2] No such file or directory
+nadia@nadia-VirtualBox:~/laba4/pro$ python3 ./script.py
+Traceback (most recent call last):
+  File "/home/nadia/laba4/pro/./script.py", line 5, in <module>
+    train_df.to_csv('laba4/pro/df.csv', index=False)
+  File "/home/nadia/.local/lib/python3.10/site-packages/pandas/core/generic.py", line 3772, in to_csv
+    return DataFrameRenderer(formatter).to_csv(
+  File "/home/nadia/.local/lib/python3.10/site-packages/pandas/io/formats/format.py", line 1186, in to_csv
+    csv_formatter.save()
+  File "/home/nadia/.local/lib/python3.10/site-packages/pandas/io/formats/csvs.py", line 240, in save
+    with get_handle(
+  File "/home/nadia/.local/lib/python3.10/site-packages/pandas/io/common.py", line 737, in get_handle
+    check_parent_directory(str(handle))
+  File "/home/nadia/.local/lib/python3.10/site-packages/pandas/io/common.py", line 600, in check_parent_directory
+    raise OSError(rf"Cannot save file into a non-existent directory: '{parent}'")
+OSError: Cannot save file into a non-existent directory: 'laba4/pro'
+nadia@nadia-VirtualBox:~/laba4/pro$ nano script.py
+nadia@nadia-VirtualBox:~/laba4/pro$ python3 ./script.py
+nadia@nadia-VirtualBox:~/laba4/pro$ git status
+On branch master
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	df.csv
+	script.py
+
+nothing added to commit but untracked files present (use "git add" to track)
+nadia@nadia-VirtualBox:~/laba4/pro$ git add df.csv
+nadia@nadia-VirtualBox:~/laba4/pro$ git commit -m "df"
+[master 98375ab] df
+ 1 file changed, 892 insertions(+)
+ create mode 100644 df.csv
+nadia@nadia-VirtualBox:~/laba4/pro$ dvc push -r mydf
+Everything is up to date.                                             
+nadia@nadia-VirtualBox:~/laba4/pro$ 1x22JlxSStHMfBRNzpYlzQgLPOff0LoFK
+1x22JlxSStHMfBRNzpYlzQgLPOff0LoFK: command not found
+nadia@nadia-VirtualBox:~/laba4/pro$ nano script.py
+nadia@nadia-VirtualBox:~/laba4/pro$ python3 ./script.py
+nadia@nadia-VirtualBox:~/laba4/pro$ cat datasets.dvc
+cat: datasets.dvc: No such file or directory
+nadia@nadia-VirtualBox:~/laba4/pro$ dvc add datasets
+100% Adding...|████████████████████████████████████████████████████████████████████████████████████████████████|1/1 [00:00,  5.72file/s]
+                                                                                                                                        
+To track the changes with git, run:                                                                                                     
+
+	git add datasets.dvc .gitignore
+
+To enable auto staging, run:
+
+	dvc config core.autostage true
+nadia@nadia-VirtualBox:~/laba4/pro$ cat datasets.dvc
+outs:
+- md5: 9c9e010d74a357306276fa53cbf256d0.dir
+  size: 62002
+  nfiles: 1
+  path: datasets
+nadia@nadia-VirtualBox:~/laba4/pro$ dvc push -r mydf
+2 files pushed                                                                                                                          
+nadia@nadia-VirtualBox:~/laba4/pro$ touch script2.py
+nadia@nadia-VirtualBox:~/laba4/pro$ nanj script2.py
+Command 'nanj' not found, did you mean:
+  command 'nano' from snap nano (5.7+pkg-4057)
+  command 'nano' from deb nano (6.2-1)
+  command 'nant' from deb nant (0.92~rc1+dfsg-7)
+See 'snap info <snapname>' for additional versions.
+nadia@nadia-VirtualBox:~/laba4/pro$ nano script2.py
+nadia@nadia-VirtualBox:~/laba4/pro$ python3 ./script2.py
+nadia@nadia-VirtualBox:~/laba4/pro$ git status
+On branch master
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	.gitignore
+	datasets.dvc
+	script.py
+	script2.py
+
+nothing added to commit but untracked files present (use "git add" to track)
+nadia@nadia-VirtualBox:~/laba4/pro$ git commit -a -m "df2"
+On branch master
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	.gitignore
+	datasets.dvc
+	script.py
+	script2.py
+
+nothing added to commit but untracked files present (use "git add" to track)
+nadia@nadia-VirtualBox:~/laba4/pro$ dvc push -r "mydf"
+Everything is up to date.                                                                                                               
+nadia@nadia-VirtualBox:~/laba4/pro$ dvc add datasets
+100% Adding...|████████████████████████████████████████████████████████████████████████████████████████████████|1/1 [00:00, 14.73file/s]
+                                                                                                                                        
+To track the changes with git, run:                                                                                                     
+
+	git add datasets.dvc
+
+To enable auto staging, run:
+
+	dvc config core.autostage true
+nadia@nadia-VirtualBox:~/laba4/pro$ git status
+On branch master
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	.gitignore
+	datasets.dvc
+	script.py
+	script2.py
+
+nothing added to commit but untracked files present (use "git add" to track)
+nadia@nadia-VirtualBox:~/laba4/pro$ git commit -a -m "df2"
+On branch master
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	.gitignore
+	datasets.dvc
+	script.py
+	script2.py
+
+nothing added to commit but untracked files present (use "git add" to track)
+nadia@nadia-VirtualBox:~/laba4/pro$ dvc push -r mydf
+2 files pushed                                                                                                                          
+nadia@nadia-VirtualBox:~/laba4/pro$ ls -lh                                                                                              
+total 80K
+drwxrwxr-x 2 nadia nadia 4,0K июн 10 13:07 datasets
+-rw-rw-r-- 1 nadia nadia   93 июн 10 13:07 datasets.dvc
+-rw-rw-r-- 1 nadia nadia  61K июн 10 12:41 df.csv
+-rw-rw-r-- 1 nadia nadia  135 июн 10 12:59 script2.py
+-rwxrwxr-x 1 nadia nadia  132 июн 10 12:53 script.py
+nadia@nadia-VirtualBox:~/laba4/pro$ git log --oneline
+98375ab (HEAD -> master) df
+56748d4 df
+8e6db68 df
+nadia@nadia-VirtualBox:~/laba4/pro$ git commit -m "df2"
+On branch master
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	.gitignore
+	datasets.dvc
+	script.py
+	script2.py
+
+nothing added to commit but untracked files present (use "git add" to track)
+nadia@nadia-VirtualBox:~/laba4/pro$ git add datasets.dvc
+nadia@nadia-VirtualBox:~/laba4/pro$ git commit -m "df2"
+[master 78bbfa3] df2
+ 1 file changed, 5 insertions(+)
+ create mode 100644 datasets.dvc
+nadia@nadia-VirtualBox:~/laba4/pro$ dvc push -r mydf
+Everything is up to date.                                                                                                               
+nadia@nadia-VirtualBox:~/laba4/pro$ git log --oneline
+78bbfa3 (HEAD -> master) df2
+98375ab df
+56748d4 df
+8e6db68 df
+nadia@nadia-VirtualBox:~/laba4/pro$ datasets.dvc
+datasets.dvc: command not found
+nadia@nadia-VirtualBox:~/laba4/pro$ cat datasets.dvc
+outs:
+- md5: ae2117471c212f38c42b861f59eb6b31.dir
+  size: 72574
+  nfiles: 2
+  path: datasets
+nadia@nadia-VirtualBox:~/laba4/pro$ nano script3.py
+nadia@nadia-VirtualBox:~/laba4/pro$ python3 ./script3.py
+Traceback (most recent call last):
+  File "/home/nadia/laba4/pro/./script3.py", line 2, in <module>
+    new_df = pd.read_csv('df2.csv',delimiter=',')
+  File "/home/nadia/.local/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 912, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/home/nadia/.local/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 577, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "/home/nadia/.local/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1407, in __init__
+    self._engine = self._make_engine(f, self.engine)
+  File "/home/nadia/.local/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1661, in _make_engine
+    self.handles = get_handle(
+  File "/home/nadia/.local/lib/python3.10/site-packages/pandas/io/common.py", line 859, in get_handle
+    handle = open(
+FileNotFoundError: [Errno 2] No such file or directory: 'df2.csv'
+nadia@nadia-VirtualBox:~/laba4/pro$ nano script3.py
+nadia@nadia-VirtualBox:~/laba4/pro$ python3 ./script3.py
+nadia@nadia-VirtualBox:~/laba4/pro$ git status
+On branch master
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	.gitignore
+	script.py
+	script2.py
+	script3.py
+
+nothing added to commit but untracked files present (use "git add" to track)
+nadia@nadia-VirtualBox:~/laba4/pro$ dvc add datasets
+100% Adding...|████████████████████████████████████████████████████████████████████████████████████████████████|1/1 [00:00, 13.35file/s]
+                                                                                                                                        
+To track the changes with git, run:                                                                                                     
+
+	git add datasets.dvc
+
+To enable auto staging, run:
+
+	dvc config core.autostage true
+nadia@nadia-VirtualBox:~/laba4/pro$ git status
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   datasets.dvc
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	.gitignore
+	script.py
+	script2.py
+	script3.py
+
+no changes added to commit (use "git add" and/or "git commit -a")
+nadia@nadia-VirtualBox:~/laba4/pro$ git commit -m "df3"
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   datasets.dvc
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	.gitignore
+	script.py
+	script2.py
+	script3.py
+
+no changes added to commit (use "git add" and/or "git commit -a")
+nadia@nadia-VirtualBox:~/laba4/pro$ dvc push -r mydf
+2 files pushed                                                                                                                          
+nadia@nadia-VirtualBox:~/laba4/pro$ git log --oneline
+78bbfa3 (HEAD -> master) df2
+98375ab df
+56748d4 df
+8e6db68 df
+nadia@nadia-VirtualBox:~/laba4/pro$ git add datasets.dvc
+nadia@nadia-VirtualBox:~/laba4/pro$ git commit -m "df3"
+[master 0002862] df3
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+nadia@nadia-VirtualBox:~/laba4/pro$ dvc push -r mydf
+Everything is up to date.                                                                                                               
+nadia@nadia-VirtualBox:~/laba4/pro$ git log --oneline
+0002862 (HEAD -> master) df3
+78bbfa3 df2
+98375ab df
+56748d4 df
+8e6db68 df
+nadia@nadia-VirtualBox:~/laba4/pro$ nano script4.py
+nadia@nadia-VirtualBox:~/laba4/pro$ python3 ./script4.py
+Traceback (most recent call last):
+  File "/home/nadia/laba4/pro/./script4.py", line 2, in <module>
+    from sklearn.preprocessing import OneHotEncoder
+ModuleNotFoundError: No module named 'sklearn'
+nadia@nadia-VirtualBox:~/laba4/pro$ pip install -U scikit-learn
+Defaulting to user installation because normal site-packages is not writeable
+Collecting scikit-learn
+  Downloading scikit_learn-1.2.2-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (9.6 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 9.6/9.6 MB 3.5 MB/s eta 0:00:00
+Requirement already satisfied: numpy>=1.17.3 in /home/nadia/.local/lib/python3.10/site-packages (from scikit-learn) (1.24.3)
+Collecting threadpoolctl>=2.0.0
+  Downloading threadpoolctl-3.1.0-py3-none-any.whl (14 kB)
+Collecting joblib>=1.1.1
+  Downloading joblib-1.2.0-py3-none-any.whl (297 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 298.0/298.0 KB 10.7 MB/s eta 0:00:00
+Requirement already satisfied: scipy>=1.3.2 in /home/nadia/.local/lib/python3.10/site-packages (from scikit-learn) (1.10.1)
+Installing collected packages: threadpoolctl, joblib, scikit-learn
+Successfully installed joblib-1.2.0 scikit-learn-1.2.2 threadpoolctl-3.1.0
+nadia@nadia-VirtualBox:~/laba4/pro$ python3 ./script4.py
+/home/nadia/.local/lib/python3.10/site-packages/sklearn/preprocessing/_encoders.py:868: FutureWarning: `sparse` was renamed to `sparse_output` in version 1.2 and will be removed in 1.4. `sparse_output` is ignored unless you leave `sparse` to its default value.
+  warnings.warn(
+nadia@nadia-VirtualBox:~/laba4/pro$ git status
+On branch master
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	.gitignore
+	script.py
+	script2.py
+	script3.py
+	script4.py
+
+nothing added to commit but untracked files present (use "git add" to track)
+nadia@nadia-VirtualBox:~/laba4/pro$ dvc add datasets
+100% Adding...|████████████████████████████████████████████████████████████████████████████████████████████████|1/1 [00:00, 13.32file/s]
+                                                                                                                                        
+To track the changes with git, run:                                                                                                     
+
+	git add datasets.dvc
+
+To enable auto staging, run:
+
+	dvc config core.autostage true
+nadia@nadia-VirtualBox:~/laba4/pro$ git status
+On branch master
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	modified:   datasets.dvc
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	.gitignore
+	script.py
+	script2.py
+	script3.py
+	script4.py
+
+no changes added to commit (use "git add" and/or "git commit -a")
+nadia@nadia-VirtualBox:~/laba4/pro$ git add datasets.dvc
+nadia@nadia-VirtualBox:~/laba4/pro$ git status
+On branch master
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+	modified:   datasets.dvc
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	.gitignore
+	script.py
+	script2.py
+	script3.py
+	script4.py
+
+nadia@nadia-VirtualBox:~/laba4/pro$ git commit -m "df4"
+[master 5b78a27] df4
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+nadia@nadia-VirtualBox:~/laba4/pro$ dvc push -r mydf
+2 files pushed                                                                                                                          
+nadia@nadia-VirtualBox:~/laba4/pro$ ^C                                                                                                  
+nadia@nadia-VirtualBox:~/laba4/pro$ ^C
+nadia@nadia-VirtualBox:~/laba4/pro$ cat datasets.dvc
+outs:
+- md5: c1bc46019a6db9cc4dbe50ac540e9466.dir
+  size: 82723
+  nfiles: 2
+  path: datasets
+nadia@nadia-VirtualBox:~/laba4/pro$ 
+
